@@ -3,11 +3,10 @@ export function createTag({tagName = 'div', tagText, tagClasses, tagId, tagAttrs
 
     if (tagText !== undefined) {
         const text = document.createTextNode(tagText);
-        tag.appendChild(text);
+        tag.appendChild(text)
     }
 
     if (tagClasses !== undefined) {
-
         if (Array.isArray(tagClasses)) {
             tagClasses.forEach((cls) => {
                 tag.classList.add(cls);
@@ -15,7 +14,6 @@ export function createTag({tagName = 'div', tagText, tagClasses, tagId, tagAttrs
         } else {
             tag.classList.add(tagClasses)
         }
-
     }
 
     if (tagId !== undefined) {
@@ -37,6 +35,4 @@ export function createTag({tagName = 'div', tagText, tagClasses, tagId, tagAttrs
     return tag;
 }
 
-export default createTag;
-
-
+export default createTag
