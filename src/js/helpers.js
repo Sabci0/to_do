@@ -34,4 +34,16 @@ export function changeStatus(id, {tasks}) {
             task.status = !task.status;
         }
     })
+    render();
+}
+
+export function setFilter(filter, {filters}) {
+    filters.forEach((item) => {
+        if (item === filter){
+            item.isActive = true;
+        } else {
+            item.isActive = false;
+        }
+    })
+    render();
 }

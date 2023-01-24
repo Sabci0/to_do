@@ -9,7 +9,21 @@ const state = {
             id: 2,
             name: 'task2',
             status: true
-        }
+        },
+    ],
+    filters:[
+        {
+            name: 'All',
+            isActive: false,
+        },
+        {
+            name: 'Active',
+            isActive: true,
+        },
+        {
+            name: 'Completed',
+            isActive: false,
+        },
     ]
 }
 

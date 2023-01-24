@@ -1,6 +1,7 @@
 import createTag from "./createTag.js";
 import state from "./store.js";
 import {addTask, changeStatus, deleteTask} from "./helpers.js";
+import {generateFilters} from "./generateFilters.js";
 
 function generateTaskList() {
     const ulTag = createTag({
@@ -8,7 +9,20 @@ function generateTaskList() {
         tagClasses: 'todo__tasks'
     })
 
-    state.tasks.forEach(({id, name, status}) => {
+    const activeFilter = state.filters.filter((item) => item.isActive)[0].name
+    state.tasks
+        .filter((task) => {
+            if (activeFilter === 'All'){
+                return true
+            }
+            if (activeFilter === 'Active'){
+                return !task.status
+            }
+            if (activeFilter === 'Completed'){
+                return task.status
+            }
+        })
+        .forEach(({id, name, status}) => {
         const liTag = createTag({
             tagName: 'li',
             tagClasses: ['todo__task', 'task']
@@ -113,6 +127,7 @@ export function generateGUI() {
     containerTag.appendChild(labelTag);
     containerTag.appendChild(inputTag);
     containerTag.appendChild(generateTaskList());
+    containerTag.appendChild(generateFilters())
 
     return containerTag;
 }
